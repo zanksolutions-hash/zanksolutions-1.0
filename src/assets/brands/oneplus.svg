@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 40" aria-hidden="true">
+  <g fill="#EB0029">
+    <path d="M10 8h14v3h-5v12h-4V11h-5z"/>
+    <path d="M24 8h8v8h-3v-5h-5z"/>
+    <path d="M28 16h4v4h-4z"/>
+    <path d="M8 24h26v8H8z" fill="none" stroke="#EB0029" stroke-width="3"/>
+    <text x="54" y="28" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="18" font-weight="900">ONEPLUS</text>
+  </g>
+</svg>
