@@ -4,6 +4,7 @@ import {
   CheckCircle2,
   ChevronDown,
   Download,
+  Globe,
   Laptop,
   Mail,
   Menu,
@@ -105,6 +106,15 @@ const services: ServiceItem[] = [
       "Vous êtes aidé sans jargon et sans vous sentir perdu face au technique.",
     cta: "Contacter sur WhatsApp",
     href: contact.whatsappUrl,
+  },
+  {
+    icon: Globe,
+    title: "Création de site vitrine",
+    text: "Vous avez besoin d’une présence en ligne claire, professionnelle et rassurante ? Vous pouvez lancer un site vitrine simple, moderne et prêt à présenter votre activité.",
+    benefit:
+      "Vous gagnez en crédibilité avec une base propre, lisible et pensée pour vos futurs clients.",
+    cta: "Demander un devis",
+    href: "#site-vitrine",
   },
 ];
 
@@ -218,6 +228,23 @@ const forfaits: ForfaitItem[] = [
       "Optimisation avancée",
       "Test de stabilité",
       "Vérification sécurité",
+    ],
+  },
+  {
+    title: "Site web vitrine",
+    price: "350€",
+    hook: "Pour lancer un site vitrine clair, professionnel et prêt à présenter votre activité.",
+    details: [
+      "Maquette simple et structurée",
+      "Site responsive mobile et desktop",
+      "Présentation claire de vos services",
+      "Section contact intégrée",
+      "Base propre pour votre visibilité en ligne",
+    ],
+    options: [
+      "Ajout de pages supplémentaires",
+      "Aide au contenu",
+      "Optimisations complémentaires",
     ],
   },
 ];
@@ -338,8 +365,8 @@ const faqs: FaqItem[] = [
     a: "Oui, les interventions proposées sont réalisées avec garantie.",
   },
   {
-    q: "Dans quelle zone intervenez-vous ?",
-    a: "Le service est pensé comme un accompagnement local, avec une prise de contact simple pour vérifier rapidement la solution adaptée à votre besoin.",
+    q: "Pouvez-vous créer un site web vitrine ?",
+    a: "Oui. Une offre de site vitrine à partir de 350€ peut être proposée pour présenter clairement votre activité en ligne.",
   },
 ];
 
@@ -367,10 +394,14 @@ function SectionTitle({
   eyebrow,
   title,
   description,
+  titleClassName = "",
+  descriptionClassName = "",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
+  titleClassName?: string;
+  descriptionClassName?: string;
 }) {
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-3 text-center">
@@ -379,11 +410,15 @@ function SectionTitle({
           {eyebrow}
         </span>
       ) : null}
-      <h2 className="text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl">
+      <h2
+        className={`text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-5xl ${titleClassName}`}
+      >
         {title}
       </h2>
       {description ? (
-        <p className="mx-auto max-w-2xl text-sm leading-7 text-black/70 sm:text-base">
+        <p
+          className={`mx-auto max-w-2xl text-sm leading-7 text-black/70 sm:text-base ${descriptionClassName}`}
+        >
           {description}
         </p>
       ) : null}
@@ -609,7 +644,7 @@ export default function App() {
                     return (
                       <article
                         key={item.title}
-                        className="min-w-[86%] snap-start rounded-[1.75rem] border border-black/8 bg-white p-5 shadow-sm md:min-w-0"
+                        className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[1.75rem] border border-black/8 bg-white p-5 shadow-sm sm:min-w-[86%] sm:max-w-none md:min-w-0"
                       >
                         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white">
                           <Icon size={20} />
@@ -694,7 +729,7 @@ export default function App() {
           />
 
           <div className="mt-14">
-            <MobileSwipeRow itemClassName="md:grid md:grid-cols-3 md:gap-6">
+            <MobileSwipeRow itemClassName="md:grid md:grid-cols-2 xl:grid-cols-4 md:gap-6">
               {services.map((service) => {
                 const Icon = service.icon;
                 const isExternal = service.href.startsWith("http");
@@ -702,7 +737,7 @@ export default function App() {
                 return (
                   <article
                     key={service.title}
-                    className="min-w-[90%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                    className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] sm:min-w-[84%] sm:max-w-none md:min-w-0"
                   >
                     <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-lg">
                       <Icon size={22} />
@@ -731,6 +766,91 @@ export default function App() {
           </div>
         </section>
 
+        <section id="site-vitrine" className="bg-white">
+          <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
+            <SectionTitle
+              eyebrow="Création de site vitrine"
+              title="Un site vitrine clair, professionnel et prêt à présenter votre activité"
+              description="À partir de 350€, vous pouvez lancer une présence en ligne simple, moderne et rassurante pour mieux présenter vos services et faciliter la prise de contact."
+              titleClassName="text-[2rem] leading-[1.04] sm:text-4xl lg:text-5xl"
+              descriptionClassName="max-w-[24ch] sm:max-w-2xl"
+            />
+
+            <div className="mt-14">
+              <MobileSwipeRow itemClassName="md:grid md:grid-cols-[1.15fr_0.85fr] md:gap-6">
+                <article className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-black p-8 text-white shadow-[0_18px_60px_rgba(0,0,0,0.12)] sm:min-w-[84%] sm:max-w-none md:min-w-0">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-black">
+                      <Globe size={22} />
+                    </div>
+                    <div className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
+                      À partir de 350€
+                    </div>
+                  </div>
+
+                  <h3 className="mt-8 text-[2rem] font-semibold leading-[1.02] tracking-tight sm:text-[2.4rem]">
+                    Création de site web vitrine
+                  </h3>
+
+                  <p className="mt-5 max-w-[28ch] text-base leading-8 text-white/75">
+                    Vous avez besoin d’un site propre, lisible et rassurant pour
+                    présenter votre activité ? Cette formule vous permet de poser
+                    une base sérieuse, professionnelle et claire pour votre
+                    visibilité en ligne.
+                  </p>
+
+                  <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                    {[
+                      "Design simple et professionnel",
+                      "Responsive mobile et desktop",
+                      "Présentation claire de vos services",
+                      "Section contact intégrée",
+                    ].map((item) => (
+                      <div key={item} className="flex items-start gap-3 text-sm text-white/78">
+                        <CheckCircle2 size={18} className="mt-1 shrink-0 text-white" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a
+                    href="#contact"
+                    className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
+                  >
+                    Demander un devis pour un site vitrine
+                  </a>
+                </article>
+
+                <article className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8 sm:min-w-[84%] sm:max-w-none md:min-w-0">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-black/40">
+                    Pour qui ?
+                  </p>
+
+                  <div className="mt-6 space-y-4">
+                    {[
+                      "Indépendants qui veulent une présence plus professionnelle",
+                      "Petites entreprises qui ont besoin d’un site clair et rassurant",
+                      "Activités locales qui veulent être trouvées plus facilement",
+                      "Entreprises qui veulent une base simple avant d’aller plus loin",
+                    ].map((item) => (
+                      <div key={item} className="flex items-start gap-3 text-sm leading-7 text-black/72">
+                        <CheckCircle2 size={18} className="mt-1 shrink-0 text-black" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="mt-8 text-sm leading-7 text-black/62">
+                    L’objectif n’est pas de faire compliqué, mais de créer un
+                    site clair, moderne et utile pour présenter votre activité
+                    et faciliter vos prises de contact.
+                  </p>
+                </article>
+              </MobileSwipeRow>
+            </div>
+          </div>
+        </section>
+
         <section className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
             <SectionTitle
@@ -744,7 +864,7 @@ export default function App() {
                 {whyChooseUs.map((item) => (
                   <div
                     key={item}
-                    className="min-w-[88%] sm:min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-7 md:min-w-0"
+                    className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-7 sm:min-w-[82%] sm:max-w-none md:min-w-0"
                   >
                     <div className="flex items-start gap-3">
                       <CheckCircle2
@@ -775,12 +895,12 @@ export default function App() {
               {steps.map((step, index) => (
                 <article
                   key={step.title}
-                  className="min-w-[88%] sm:min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                  className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] sm:min-w-[82%] sm:max-w-none md:min-w-0"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
                     {index + 1}
                   </div>
-                  <h3 className="mt-6 text-lg font-semibold tracking-tight text-black">
+                  <h3 className="mt-6 text-[1.7rem] font-semibold leading-[1.06] tracking-tight text-black sm:text-lg sm:leading-tight">
                     {step.title}
                   </h3>
                   <p className="mt-3 text-sm leading-7 text-black/62">
@@ -799,11 +919,11 @@ export default function App() {
                 Offres et forfaits
               </span>
 
-              <h2 className="mt-4 text-[2.25rem] font-semibold leading-[1.02] tracking-tight text-black sm:text-4xl lg:text-5xl">
+              <h2 className="mt-4 text-[2rem] font-semibold leading-[1.03] tracking-tight text-black sm:text-4xl lg:text-5xl">
                 Des offres claires pour répondre à vos besoins
               </h2>
 
-              <p className="mx-auto mt-4 max-w-[22ch] text-[1.05rem] leading-8 text-black/70 sm:max-w-2xl sm:text-base">
+              <p className="mx-auto mt-4 max-w-[22ch] text-[1rem] leading-8 text-black/70 sm:max-w-2xl sm:text-base">
                 Que vous vouliez entretenir votre ordinateur, l’optimiser, vous
                 faire accompagner ou repartir sur une configuration adaptée,
                 vous trouvez une formule claire et facile à comprendre.
@@ -818,7 +938,7 @@ export default function App() {
                   return (
                     <article
                       key={forfait.title}
-                      className="min-w-[88%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.04)] sm:min-w-[82%] sm:p-8 md:min-w-0"
+                      className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.04)] sm:min-w-[82%] sm:max-w-none sm:p-8 md:min-w-0"
                     >
                       <button
                         type="button"
@@ -837,17 +957,17 @@ export default function App() {
                           </div>
 
                           <div className="min-w-0">
-                            <h3 className="text-[2.1rem] font-semibold leading-[0.98] tracking-tight text-black sm:text-[2.25rem]">
+                            <h3 className="max-w-[12ch] break-words text-[1.75rem] font-semibold leading-[1.02] tracking-tight text-black sm:max-w-[13ch] sm:text-[2rem]">
                               {forfait.title}
                             </h3>
 
-                            <p className="mt-5 max-w-[18ch] text-[1.05rem] leading-8 text-black/62 sm:max-w-[24ch] sm:text-base">
+                            <p className="mt-5 max-w-[18ch] text-[1rem] leading-8 text-black/62 sm:max-w-[24ch] sm:text-base">
                               {forfait.hook}
                             </p>
                           </div>
                         </div>
 
-                        <div className="mt-8 flex items-center gap-2 text-[1.05rem] font-medium text-black/70 sm:text-base">
+                        <div className="mt-8 flex items-center gap-2 text-[1rem] font-medium text-black/70 sm:text-base">
                           <span>{isOpen ? "Masquer le détail" : "Voir le détail"}</span>
                           <ChevronDown
                             size={20}
@@ -991,7 +1111,7 @@ export default function App() {
                 return (
                   <div
                     key={item.title}
-                    className="min-w-[90%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                    className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] sm:min-w-[84%] sm:max-w-none md:min-w-0"
                   >
                     <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
                       <Icon size={22} />
@@ -1135,7 +1255,7 @@ export default function App() {
               {testimonials.map((testimonial) => (
                 <article
                   key={testimonial.name}
-                  className="min-w-[90%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                  className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] sm:min-w-[84%] sm:max-w-none md:min-w-0"
                 >
                   <p className="text-sm leading-7 text-black/68">
                     “{testimonial.quote}”
@@ -1278,6 +1398,7 @@ export default function App() {
                         <option>Optimisation / entretien PC</option>
                         <option>PC sur mesure</option>
                         <option>Nettoyage Premium</option>
+                        <option>Création site web vitrine</option>
                         <option>Autre demande</option>
                       </select>
                     </div>
@@ -1377,7 +1498,8 @@ export default function App() {
               <p className="mt-4 text-sm leading-7 text-white/70">
                 {contact.companyName} accompagne les particuliers, indépendants
                 et petites entreprises pour la réparation smartphone, le
-                dépannage informatique et l’assistance technique.
+                dépannage informatique, l’assistance technique et la création de
+                site vitrine.
               </p>
               <p className="mt-2 text-sm leading-7 text-white/70">
                 TVA : {contact.vat}
