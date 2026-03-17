@@ -87,12 +87,12 @@ const trustPoints = [
   {
     icon: MessageCircle,
     title: "Prise de contact simple",
-    text: "WhatsApp, téléphone ou email selon le moyen qui vous convient le mieux.",
+    text: "p, téléphone ou email selon le moyen qui vous convient le mieux.",
   },
 ];
 
 const steps = [
-  "Vous expliquez votre besoin par WhatsApp, téléphone ou email.",
+  "Vous expliquez votre besoin par p, téléphone ou email.",
   "Nous analysons votre problème pour orienter rapidement la bonne solution.",
   "Vous recevez une réponse claire, avec un devis ou un diagnostic compréhensible.",
   "Nous réparons, dépannons ou vous accompagnons selon votre situation.",
@@ -189,7 +189,7 @@ const testimonials = [
 const faqs = [
   {
     q: "Comment demander un devis ?",
-    a: "Vous pouvez demander un devis simplement par WhatsApp, téléphone ou email en expliquant votre besoin ou votre panne.",
+    a: "Vous pouvez demander un devis simplement par p, téléphone ou email en expliquant votre besoin ou votre panne.",
   },
   {
     q: "Réparez-vous uniquement les iPhone ?",
@@ -973,20 +973,46 @@ Message : ${formData.message}`,
                   Expliquez votre besoin en quelques secondes. Que vous soyez particulier, indépendant ou petite entreprise, vous pouvez préparer votre message et l’envoyer directement sur WhatsApp.
                 </p>
 
-                <div className="mt-10"><SwipeRow desktopClassName="md:grid md:grid-cols-3 md:gap-4">
-                  <a href="https://wa.me/32499469864" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
-                    <p className="text-sm text-white/45">WhatsApp</p>
-                    <p className="mt-2 text-xl font-medium text-white">Nous contacter</p>
-                  </a>
-                  <a href="tel:+32499469864" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
-                    <p className="text-sm text-white/45">Téléphone</p>
-                    <p className="mt-2 text-[1.9rem] font-medium leading-tight whitespace-nowrap text-white">+32 499 469 864</p>
-                  </a>
-                  <a href="mailto:info@zanksolutions.be" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
-                    <p className="text-sm text-white/45">Email</p>
-                    <p className="mt-2 text-xl font-medium leading-tight break-all text-white">info@zanksolutions.be</p>
-                  </a>
-                </SwipeRow></div>
+                <div className="mt-12 grid gap-6 md:grid-cols-3">
+  <a
+    href={contact.whatsappUrl}
+    className="rounded-[2rem] border border-white/10 bg-white/5 p-8 transition hover:bg-white/10"
+  >
+    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black">
+      <MessageCircle size={20} />
+    </div>
+    <p className="text-sm text-white/45">WhatsApp</p>
+    <p className="mt-4 text-base font-semibold leading-snug text-white">
+      Nous contacter
+    </p>
+  </a>
+
+  <a
+    href={`tel:${contact.phoneRaw}`}
+    className="rounded-[2rem] border border-white/10 bg-white/5 p-8 transition hover:bg-white/10"
+  >
+    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black">
+      <Phone size={20} />
+    </div>
+    <p className="text-sm text-white/45">Téléphone</p>
+    <p className="mt-4 text-base font-semibold leading-snug whitespace-nowrap text-white">
+      {contact.phoneDisplay}
+    </p>
+  </a>
+
+  <a
+    href={`mailto:${contact.email}`}
+    className="rounded-[2rem] border border-white/10 bg-white/5 p-8 transition hover:bg-white/10"
+  >
+    <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-black">
+      <Mail size={20} />
+    </div>
+    <p className="text-sm text-white/45">Email</p>
+    <p className="mt-4 text-base font-semibold leading-snug break-all text-white">
+      {contact.email}
+    </p>
+  </a>
+</div>
               </motion.div>
 
               <motion.div {...fadeUp} className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
