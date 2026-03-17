@@ -794,11 +794,21 @@ export default function App() {
 
         <section id="forfaits" className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-            <SectionTitle
-              eyebrow="Offres et forfaits"
-              title="Des offres claires pour répondre à vos besoins"
-              description="Que vous vouliez entretenir votre ordinateur, l’optimiser, vous faire accompagner ou repartir sur une configuration adaptée, vous trouvez une formule claire et facile à comprendre."
-            />
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="mx-auto inline-flex rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-black/70 shadow-sm">
+                Offres et forfaits
+              </span>
+
+              <h2 className="mt-4 text-[2.25rem] font-semibold leading-[1.02] tracking-tight text-black sm:text-4xl lg:text-5xl">
+                Des offres claires pour répondre à vos besoins
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-[22ch] text-[1.05rem] leading-8 text-black/70 sm:max-w-2xl sm:text-base">
+                Que vous vouliez entretenir votre ordinateur, l’optimiser, vous
+                faire accompagner ou repartir sur une configuration adaptée,
+                vous trouvez une formule claire et facile à comprendre.
+              </p>
+            </div>
 
             <div className="mt-14">
               <MobileSwipeRow itemClassName="md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-6">
@@ -808,7 +818,7 @@ export default function App() {
                   return (
                     <article
                       key={forfait.title}
-                      className="min-w-[92%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.04)] sm:p-8 md:min-w-0"
+                      className="min-w-[88%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.04)] sm:min-w-[82%] sm:p-8 md:min-w-0"
                     >
                       <button
                         type="button"
@@ -819,25 +829,28 @@ export default function App() {
                         }
                         className="w-full text-left"
                       >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0 pr-2">
-                            <h3 className="max-w-[10ch] text-[2rem] font-semibold leading-[1.02] tracking-tight text-black sm:max-w-none sm:text-2xl">
+                        <div className="flex flex-col gap-4 sm:gap-5">
+                          <div className="flex justify-start">
+                            <div className="inline-flex rounded-full bg-black px-4 py-2 text-sm font-semibold leading-none text-white sm:px-5 sm:py-2.5 sm:text-base">
+                              {forfait.price}
+                            </div>
+                          </div>
+
+                          <div className="min-w-0">
+                            <h3 className="text-[2.1rem] font-semibold leading-[0.98] tracking-tight text-black sm:text-[2.25rem]">
                               {forfait.title}
                             </h3>
-                            <p className="mt-4 max-w-[22ch] text-[15px] leading-7 text-black/62 sm:max-w-none sm:text-sm">
+
+                            <p className="mt-5 max-w-[18ch] text-[1.05rem] leading-8 text-black/62 sm:max-w-[24ch] sm:text-base">
                               {forfait.hook}
                             </p>
                           </div>
-
-                          <div className="shrink-0 rounded-full bg-black px-4 py-2 text-base font-semibold leading-none text-white sm:px-5 sm:py-3 sm:text-lg">
-                            {forfait.price}
-                          </div>
                         </div>
 
-                        <div className="mt-6 flex items-center gap-2 text-sm font-medium text-black/70">
+                        <div className="mt-8 flex items-center gap-2 text-[1.05rem] font-medium text-black/70 sm:text-base">
                           <span>{isOpen ? "Masquer le détail" : "Voir le détail"}</span>
                           <ChevronDown
-                            size={18}
+                            size={20}
                             className={`transition-transform ${
                               isOpen ? "rotate-180" : ""
                             }`}
@@ -851,11 +864,11 @@ export default function App() {
                             {forfait.details.map((item) => (
                               <div
                                 key={item}
-                                className="flex items-start gap-3 text-sm text-black/72"
+                                className="flex items-start gap-3 text-sm leading-7 text-black/72"
                               >
                                 <CheckCircle2
                                   size={18}
-                                  className="mt-0.5 shrink-0 text-black"
+                                  className="mt-1 shrink-0 text-black"
                                 />
                                 <span>{item}</span>
                               </div>
@@ -867,15 +880,16 @@ export default function App() {
                               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/40">
                                 Options
                               </p>
+
                               <div className="mt-4 space-y-3">
                                 {forfait.options.map((option) => (
                                   <div
                                     key={option}
-                                    className="flex items-start gap-3 text-sm text-black/72"
+                                    className="flex items-start gap-3 text-sm leading-7 text-black/72"
                                   >
                                     <CheckCircle2
                                       size={18}
-                                      className="mt-0.5 shrink-0 text-black"
+                                      className="mt-1 shrink-0 text-black"
                                     />
                                     <span>{option}</span>
                                   </div>
