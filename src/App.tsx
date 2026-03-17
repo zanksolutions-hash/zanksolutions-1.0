@@ -1,20 +1,20 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent, type ReactNode } from "react";
 import {
+  BatteryCharging,
   CheckCircle2,
   ChevronDown,
+  Download,
+  Laptop,
   Mail,
   Menu,
   MessageCircle,
-  Phone,
-  X,
-  Laptop,
-  Smartphone,
-  Wrench,
-  ShieldCheck,
-  Sparkles,
   MonitorSmartphone,
-  BatteryCharging,
-  Download,
+  Phone,
+  ShieldCheck,
+  Smartphone,
+  Sparkles,
+  Wrench,
+  X,
 } from "lucide-react";
 
 import logoMark from "./assets/logo-mark.png";
@@ -343,14 +343,15 @@ const faqs: FaqItem[] = [
   },
 ];
 
-type MobileSwipeRowProps = {
-  children: React.ReactNode;
+function MobileSwipeRow({
+  children,
+  itemClassName = "",
+}: {
+  children: ReactNode;
   itemClassName?: string;
-};
-
-function MobileSwipeRow({ children, itemClassName = "" }: MobileSwipeRowProps) {
+}) {
   return (
-    <div>
+    <div className="overflow-hidden">
       <div className="hide-scrollbar -mr-5 overflow-x-auto pb-4 pr-2 md:mr-0 md:overflow-visible md:pr-0">
         <div
           className={`flex snap-x snap-mandatory gap-5 pr-8 md:pr-0 ${itemClassName}`}
@@ -469,8 +470,14 @@ export default function App() {
   function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (!formData.name.trim() || !formData.contactField.trim() || !formData.message.trim()) {
-      alert("Merci de compléter au minimum votre nom, votre contact et votre message.");
+    if (
+      !formData.name.trim() ||
+      !formData.contactField.trim() ||
+      !formData.message.trim()
+    ) {
+      alert(
+        "Merci de compléter au minimum votre nom, votre contact et votre message."
+      );
       return;
     }
 
@@ -478,7 +485,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f5f5f7] text-black selection:bg-black selection:text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#f5f5f7] text-black selection:bg-black selection:text-white">
       <header className="sticky top-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
           <a href="#accueil" className="flex items-center gap-3">
@@ -553,38 +560,41 @@ export default function App() {
       <main>
         <section id="accueil" className="relative overflow-hidden">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(0,0,0,0.07),transparent_36%)]" />
-          <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:py-28">
-            <div>
-              <div className="inline-flex items-center rounded-full border border-black/10 bg-white/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.24em] text-black/55">
+          <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 py-12 sm:py-14 lg:grid-cols-[1.04fr_0.96fr] lg:px-8 lg:py-24">
+            <div className="min-w-0">
+              <div className="inline-flex max-w-full items-center rounded-full border border-black/10 bg-white/70 px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.24em] text-black/55 sm:text-xs">
                 Réparation · Dépannage · Assistance
               </div>
 
-              <h1 className="mt-7 max-w-4xl text-4xl font-semibold tracking-tight text-black sm:text-6xl lg:text-7xl">
-                Un problème informatique ou un smartphone à réparer ? Vous êtes au bon endroit.
+              <h1 className="mt-7 max-w-[12ch] text-[2.2rem] font-semibold leading-[1.05] tracking-tight text-black sm:max-w-4xl sm:text-5xl lg:text-7xl">
+                Un problème informatique ou un smartphone à réparer ? Vous êtes
+                au bon endroit.
               </h1>
 
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65 sm:text-xl">
-                ZANK Solutions accompagne les particuliers, indépendants et petites
-                entreprises avec des solutions simples, une réponse rapide, des prix
-                clairs et un contact direct par WhatsApp, téléphone ou email.
+              <p className="mt-5 max-w-[34ch] text-base leading-7 text-black/65 sm:max-w-2xl sm:text-lg lg:text-xl">
+                ZANK Solutions accompagne les particuliers, indépendants et
+                petites entreprises avec des solutions simples, une réponse
+                rapide, des prix clairs et un contact direct par WhatsApp,
+                téléphone ou email.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="#contact"
-                  className="rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:scale-[1.02]"
+                  className="inline-flex items-center justify-center rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:scale-[1.02]"
                 >
                   Demander un devis
                 </a>
+
                 <a
                   href={contact.whatsappUrl}
-                  className="rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-black/5"
+                  className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-black/5"
                 >
                   Contacter sur WhatsApp
                 </a>
               </div>
 
-              <p className="mt-6 text-sm font-medium text-black/55">
+              <p className="mt-5 max-w-[30ch] text-sm leading-6 text-black/55">
                 Une réponse rapide, des prix clairs, un contact simple
               </p>
 
@@ -604,8 +614,12 @@ export default function App() {
                         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white">
                           <Icon size={20} />
                         </div>
-                        <p className="text-2xl font-semibold tracking-tight">{item.title}</p>
-                        <p className="mt-2 text-sm text-black/55">{item.text}</p>
+                        <p className="text-2xl font-semibold tracking-tight">
+                          {item.title}
+                        </p>
+                        <p className="mt-2 text-sm text-black/55">
+                          {item.text}
+                        </p>
                       </article>
                     );
                   })}
@@ -613,14 +627,14 @@ export default function App() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative min-w-0">
               <div className="absolute -inset-8 rounded-[3rem] bg-black/[0.05] blur-3xl" />
-              <div className="relative rounded-[2.2rem] border border-black/10 bg-white p-6 shadow-[0_18px_60px_rgba(0,0,0,0.06)] lg:p-8">
-                <div className="rounded-[1.9rem] bg-[#f5f5f7] p-6 lg:p-8">
+              <div className="relative rounded-[2rem] border border-black/10 bg-white p-4 shadow-[0_18px_60px_rgba(0,0,0,0.06)] sm:p-6 lg:rounded-[2.2rem] lg:p-8">
+                <div className="rounded-[1.6rem] bg-[#f5f5f7] p-4 sm:p-6 lg:rounded-[1.9rem] lg:p-8">
                   <img
                     src={logoWordmark}
                     alt="ZANK Solutions"
-                    className="mx-auto h-32 w-auto object-contain sm:h-44 lg:h-52"
+                    className="mx-auto h-20 w-auto object-contain sm:h-32 lg:h-52"
                   />
 
                   <div className="mt-7 grid gap-4">
@@ -628,11 +642,13 @@ export default function App() {
                       href="#services"
                       className="block rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                     >
-                      <p className="text-sm font-semibold text-black">Support informatique</p>
+                      <p className="text-sm font-semibold text-black">
+                        Support informatique
+                      </p>
                       <p className="mt-2 text-sm leading-6 text-black/55">
-                        Votre ordinateur est lent, instable ou pénible à utiliser ?
-                        Vous retrouvez un appareil plus fluide, plus simple et plus
-                        agréable au quotidien.
+                        Votre ordinateur est lent, instable ou pénible à
+                        utiliser ? Vous retrouvez un appareil plus fluide, plus
+                        simple et plus agréable au quotidien.
                       </p>
                     </a>
 
@@ -644,8 +660,9 @@ export default function App() {
                         Réparation smartphones & tablettes
                       </p>
                       <p className="mt-2 text-sm leading-6 text-black/55">
-                        Écran cassé, batterie usée ou problème de charge : vous savez
-                        rapidement si votre appareil peut être pris en charge.
+                        Écran cassé, batterie usée ou problème de charge : vous
+                        savez rapidement si votre appareil peut être pris en
+                        charge.
                       </p>
                     </a>
 
@@ -653,10 +670,13 @@ export default function App() {
                       href="#support"
                       className="block rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                     >
-                      <p className="text-sm font-semibold text-black">Support à distance</p>
+                      <p className="text-sm font-semibold text-black">
+                        Support à distance
+                      </p>
                       <p className="mt-2 text-sm leading-6 text-black/55">
-                        Besoin d’aide sans vous déplacer ? Vous êtes guidé simplement
-                        pour recevoir une assistance rapide et efficace à distance.
+                        Besoin d’aide sans vous déplacer ? Vous êtes guidé
+                        simplement pour recevoir une assistance rapide et
+                        efficace à distance.
                       </p>
                     </a>
                   </div>
@@ -690,7 +710,9 @@ export default function App() {
                     <h3 className="text-xl font-semibold tracking-tight text-black">
                       {service.title}
                     </h3>
-                    <p className="mt-4 text-sm leading-7 text-black/62">{service.text}</p>
+                    <p className="mt-4 text-sm leading-7 text-black/62">
+                      {service.text}
+                    </p>
                     <p className="mt-4 text-sm font-medium leading-7 text-black/85">
                       {service.benefit}
                     </p>
@@ -725,7 +747,10 @@ export default function App() {
                     className="min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-7 md:min-w-0"
                   >
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 size={18} className="mt-1 shrink-0 text-black" />
+                      <CheckCircle2
+                        size={18}
+                        className="mt-1 shrink-0 text-black"
+                      />
                       <p className="text-sm leading-7 text-black/72">{item}</p>
                     </div>
                   </div>
@@ -758,7 +783,9 @@ export default function App() {
                   <h3 className="mt-6 text-lg font-semibold tracking-tight text-black">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-black/62">{step.text}</p>
+                  <p className="mt-3 text-sm leading-7 text-black/62">
+                    {step.text}
+                  </p>
                 </article>
               ))}
             </MobileSwipeRow>
@@ -785,11 +812,15 @@ export default function App() {
                     >
                       <button
                         type="button"
-                        onClick={() => setOpenForfait((current) => (current === index ? null : index))}
+                        onClick={() =>
+                          setOpenForfait((current) =>
+                            current === index ? null : index
+                          )
+                        }
                         className="w-full text-left"
                       >
                         <div className="flex items-start justify-between gap-4">
-                          <div>
+                          <div className="min-w-0">
                             <h3 className="text-2xl font-semibold tracking-tight text-black">
                               {forfait.title}
                             </h3>
@@ -797,7 +828,7 @@ export default function App() {
                               {forfait.hook}
                             </p>
                           </div>
-                          <div className="rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
+                          <div className="shrink-0 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
                             {forfait.price}
                           </div>
                         </div>
@@ -806,7 +837,9 @@ export default function App() {
                           <span>{isOpen ? "Masquer le détail" : "Voir le détail"}</span>
                           <ChevronDown
                             size={18}
-                            className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+                            className={`transition-transform ${
+                              isOpen ? "rotate-180" : ""
+                            }`}
                           />
                         </div>
                       </button>
@@ -815,8 +848,14 @@ export default function App() {
                         <div className="mt-6 border-t border-black/8 pt-6">
                           <div className="space-y-3">
                             {forfait.details.map((item) => (
-                              <div key={item} className="flex items-start gap-3 text-sm text-black/72">
-                                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-black" />
+                              <div
+                                key={item}
+                                className="flex items-start gap-3 text-sm text-black/72"
+                              >
+                                <CheckCircle2
+                                  size={18}
+                                  className="mt-0.5 shrink-0 text-black"
+                                />
                                 <span>{item}</span>
                               </div>
                             ))}
@@ -833,7 +872,10 @@ export default function App() {
                                     key={option}
                                     className="flex items-start gap-3 text-sm text-black/72"
                                   >
-                                    <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-black" />
+                                    <CheckCircle2
+                                      size={18}
+                                      className="mt-0.5 shrink-0 text-black"
+                                    />
                                     <span>{option}</span>
                                   </div>
                                 ))}
@@ -913,8 +955,12 @@ export default function App() {
                         />
                       </div>
                       <div className="p-5">
-                        <h4 className="text-base font-semibold text-black">{item.title}</h4>
-                        <p className="mt-2 text-sm leading-6 text-black/62">{item.text}</p>
+                        <h4 className="text-base font-semibold text-black">
+                          {item.title}
+                        </h4>
+                        <p className="mt-2 text-sm leading-6 text-black/62">
+                          {item.text}
+                        </p>
                       </div>
                     </button>
                   </article>
@@ -938,7 +984,9 @@ export default function App() {
                     <h3 className="text-xl font-semibold tracking-tight text-black">
                       {item.title}
                     </h3>
-                    <p className="mt-4 text-sm leading-7 text-black/62">{item.text}</p>
+                    <p className="mt-4 text-sm leading-7 text-black/62">
+                      {item.text}
+                    </p>
                   </div>
                 );
               })}
@@ -954,8 +1002,8 @@ export default function App() {
                 Écran à partir de / Batterie à partir de
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-black/60">
-                Vous gagnez en clarté avant de prendre contact, avec des prix indicatifs
-                visibles sur les modèles les plus demandés.
+                Vous gagnez en clarté avant de prendre contact, avec des prix
+                indicatifs visibles sur les modèles les plus demandés.
               </p>
             </div>
 
@@ -964,13 +1012,20 @@ export default function App() {
                 <thead>
                   <tr className="border-b border-black/8 bg-[#f5f5f7] text-sm text-black/60">
                     <th className="px-6 py-4 font-semibold">Modèle</th>
-                    <th className="px-6 py-4 font-semibold">Écran à partir de</th>
-                    <th className="px-6 py-4 font-semibold">Batterie à partir de</th>
+                    <th className="px-6 py-4 font-semibold">
+                      Écran à partir de
+                    </th>
+                    <th className="px-6 py-4 font-semibold">
+                      Batterie à partir de
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="text-sm text-black/75">
                   {iphonePrices.map((row) => (
-                    <tr key={row[0]} className="border-b border-black/6 last:border-b-0">
+                    <tr
+                      key={row[0]}
+                      className="border-b border-black/6 last:border-b-0"
+                    >
                       <td className="px-6 py-4 font-medium">{row[0]}</td>
                       <td className="px-6 py-4">{row[1]}</td>
                       <td className="px-6 py-4">{row[2]}</td>
@@ -1042,7 +1097,9 @@ export default function App() {
                       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-semibold text-black">
                         {index + 1}
                       </div>
-                      <p className="pt-2 text-sm leading-6 text-white/75">{step}</p>
+                      <p className="pt-2 text-sm leading-6 text-white/75">
+                        {step}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -1065,7 +1122,9 @@ export default function App() {
                   key={testimonial.name}
                   className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                 >
-                  <p className="text-sm leading-7 text-black/68">“{testimonial.quote}”</p>
+                  <p className="text-sm leading-7 text-black/68">
+                    “{testimonial.quote}”
+                  </p>
                   <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-black/40">
                     {testimonial.name}
                   </p>
@@ -1094,7 +1153,11 @@ export default function App() {
                   >
                     <button
                       type="button"
-                      onClick={() => setOpenFaq((current) => (current === index ? null : index))}
+                      onClick={() =>
+                        setOpenFaq((current) =>
+                          current === index ? null : index
+                        )
+                      }
                       className="flex w-full items-center justify-between gap-4 px-7 py-6 text-left"
                     >
                       <span className="text-lg font-semibold tracking-tight text-black">
@@ -1111,7 +1174,9 @@ export default function App() {
 
                     {isOpen ? (
                       <div className="px-7 pb-7">
-                        <p className="text-sm leading-7 text-black/63">{faq.a}</p>
+                        <p className="text-sm leading-7 text-black/63">
+                          {faq.a}
+                        </p>
                       </div>
                     ) : null}
                   </div>
@@ -1132,9 +1197,9 @@ export default function App() {
                   Obtenez une réponse rapidement
                 </h2>
                 <p className="mt-5 max-w-2xl text-lg leading-8 text-white/70">
-                  Expliquez votre besoin en quelques secondes. Remplissez le formulaire
-                  ci-dessous pour préparer votre message et l’envoyer directement sur
-                  WhatsApp.
+                  Expliquez votre besoin en quelques secondes. Remplissez le
+                  formulaire ci-dessous pour préparer votre message et l’envoyer
+                  directement sur WhatsApp.
                 </p>
 
                 <form
@@ -1143,12 +1208,17 @@ export default function App() {
                 >
                   <div className="grid gap-5">
                     <div>
-                      <label className="mb-2 block text-sm text-white/60">Nom</label>
+                      <label className="mb-2 block text-sm text-white/60">
+                        Nom
+                      </label>
                       <input
                         type="text"
                         value={formData.name}
                         onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, name: e.target.value }))
+                          setFormData((prev) => ({
+                            ...prev,
+                            name: e.target.value,
+                          }))
                         }
                         placeholder="Votre nom"
                         className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none placeholder:text-white/30 focus:border-white/25"
@@ -1180,7 +1250,10 @@ export default function App() {
                       <select
                         value={formData.needType}
                         onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, needType: e.target.value }))
+                          setFormData((prev) => ({
+                            ...prev,
+                            needType: e.target.value,
+                          }))
                         }
                         className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none focus:border-white/25"
                       >
@@ -1202,7 +1275,10 @@ export default function App() {
                         rows={5}
                         value={formData.message}
                         onChange={(e) =>
-                          setFormData((prev) => ({ ...prev, message: e.target.value }))
+                          setFormData((prev) => ({
+                            ...prev,
+                            message: e.target.value,
+                          }))
                         }
                         placeholder="Expliquez brièvement votre besoin, votre problème ou ce que vous souhaitez faire."
                         className="w-full rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none placeholder:text-white/30 focus:border-white/25"
@@ -1226,8 +1302,8 @@ export default function App() {
 
               <div className="lg:pt-14">
                 <p className="text-sm leading-7 text-white/60">
-                  Vous avez une question, un besoin urgent ou une demande de devis ?
-                  Le plus simple est de nous contacter directement.
+                  Vous avez une question, un besoin urgent ou une demande de
+                  devis ? Le plus simple est de nous contacter directement.
                 </p>
 
                 <div className="mt-12 grid gap-6 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
@@ -1284,9 +1360,9 @@ export default function App() {
                 Mentions légales
               </p>
               <p className="mt-4 text-sm leading-7 text-white/70">
-                {contact.companyName} accompagne les particuliers, indépendants et
-                petites entreprises pour la réparation smartphone, le dépannage
-                informatique et l’assistance technique.
+                {contact.companyName} accompagne les particuliers, indépendants
+                et petites entreprises pour la réparation smartphone, le
+                dépannage informatique et l’assistance technique.
               </p>
               <p className="mt-2 text-sm leading-7 text-white/70">
                 TVA : {contact.vat}
@@ -1300,12 +1376,15 @@ export default function App() {
               <p className="mt-4 text-sm leading-7 text-white/70">
                 Téléphone : {contact.phoneDisplay}
               </p>
-              <p className="text-sm leading-7 text-white/70">Email : {contact.email}</p>
+              <p className="text-sm leading-7 text-white/70">
+                Email : {contact.email}
+              </p>
             </div>
           </div>
 
           <div className="mt-8 border-t border-white/10 pt-6 text-sm text-white/45">
-            © {new Date().getFullYear()} {contact.companyName}. Tous droits réservés.
+            © {new Date().getFullYear()} {contact.companyName}. Tous droits
+            réservés.
           </div>
         </div>
       </footer>
