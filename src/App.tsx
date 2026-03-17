@@ -352,9 +352,9 @@ function MobileSwipeRow({
 }) {
   return (
     <div className="overflow-hidden">
-      <div className="hide-scrollbar -mr-5 overflow-x-auto pb-4 pr-2 md:mr-0 md:overflow-visible md:pr-0">
+      <div className="hide-scrollbar -mx-5 overflow-x-auto px-5 pb-4 md:mx-0 md:overflow-visible md:px-0 md:pb-0">
         <div
-          className={`flex snap-x snap-mandatory gap-5 pr-8 md:pr-0 ${itemClassName}`}
+          className={`flex snap-x snap-mandatory gap-5 pr-5 md:pr-0 ${itemClassName}`}
         >
           {children}
         </div>
@@ -609,7 +609,7 @@ export default function App() {
                     return (
                       <article
                         key={item.title}
-                        className="min-w-[82%] snap-start rounded-[1.75rem] border border-black/8 bg-white p-5 shadow-sm md:min-w-0"
+                        className="min-w-[86%] snap-start rounded-[1.75rem] border border-black/8 bg-white p-5 shadow-sm md:min-w-0"
                       >
                         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white">
                           <Icon size={20} />
@@ -640,7 +640,7 @@ export default function App() {
                   <div className="mt-7 grid gap-4">
                     <a
                       href="#services"
-                      className="block rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                      className="block rounded-2xl bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
                     >
                       <p className="text-sm font-semibold text-black">
                         Support informatique
@@ -654,7 +654,7 @@ export default function App() {
 
                     <a
                       href="#reparation-gsm"
-                      className="block rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                      className="block rounded-2xl bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
                     >
                       <p className="text-sm font-semibold text-black">
                         Réparation smartphones & tablettes
@@ -668,7 +668,7 @@ export default function App() {
 
                     <a
                       href="#support"
-                      className="block rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                      className="block rounded-2xl bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:p-5"
                     >
                       <p className="text-sm font-semibold text-black">
                         Support à distance
@@ -702,7 +702,7 @@ export default function App() {
                 return (
                   <article
                     key={service.title}
-                    className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                    className="min-w-[90%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                   >
                     <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-lg">
                       <Icon size={22} />
@@ -744,7 +744,7 @@ export default function App() {
                 {whyChooseUs.map((item) => (
                   <div
                     key={item}
-                    className="min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-7 md:min-w-0"
+                    className="min-w-[88%] sm:min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-7 md:min-w-0"
                   >
                     <div className="flex items-start gap-3">
                       <CheckCircle2
@@ -775,7 +775,7 @@ export default function App() {
               {steps.map((step, index) => (
                 <article
                   key={step.title}
-                  className="min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                  className="min-w-[88%] sm:min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
                     {index + 1}
@@ -808,7 +808,7 @@ export default function App() {
                   return (
                     <article
                       key={forfait.title}
-                      className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.04)] md:min-w-0"
+                      className="min-w-[92%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-6 shadow-[0_18px_60px_rgba(0,0,0,0.04)] sm:p-8 md:min-w-0"
                     >
                       <button
                         type="button"
@@ -819,16 +819,17 @@ export default function App() {
                         }
                         className="w-full text-left"
                       >
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="min-w-0">
-                            <h3 className="text-2xl font-semibold tracking-tight text-black">
+                        <div className="flex items-start justify-between gap-3">
+                          <div className="min-w-0 pr-2">
+                            <h3 className="max-w-[10ch] text-[2rem] font-semibold leading-[1.02] tracking-tight text-black sm:max-w-none sm:text-2xl">
                               {forfait.title}
                             </h3>
-                            <p className="mt-3 text-sm leading-7 text-black/62">
+                            <p className="mt-4 max-w-[22ch] text-[15px] leading-7 text-black/62 sm:max-w-none sm:text-sm">
                               {forfait.hook}
                             </p>
                           </div>
-                          <div className="shrink-0 rounded-full bg-black px-4 py-2 text-sm font-semibold text-white">
+
+                          <div className="shrink-0 rounded-full bg-black px-4 py-2 text-base font-semibold leading-none text-white sm:px-5 sm:py-3 sm:text-lg">
                             {forfait.price}
                           </div>
                         </div>
@@ -934,11 +935,11 @@ export default function App() {
             </div>
 
             <div className="-mx-1 overflow-x-auto pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex snap-x snap-mandatory gap-5 px-1">
+              <div className="flex snap-x snap-mandatory gap-5 px-1 pr-5">
                 {repairGallery.map((item, idx) => (
                   <article
                     key={`${item.title}-${idx}`}
-                    className={`min-w-[76%] snap-center overflow-hidden rounded-[1.7rem] border border-black/8 bg-[#f5f5f7] sm:min-w-[46%] lg:min-w-[31%] ${
+                    className={`min-w-[78%] snap-center overflow-hidden rounded-[1.7rem] border border-black/8 bg-[#f5f5f7] sm:min-w-[46%] lg:min-w-[31%] ${
                       idx === 0 ? "ring-2 ring-black/10" : ""
                     }`}
                   >
@@ -976,7 +977,7 @@ export default function App() {
                 return (
                   <div
                     key={item.title}
-                    className="min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                    className="min-w-[90%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                   >
                     <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
                       <Icon size={22} />
@@ -1120,7 +1121,7 @@ export default function App() {
               {testimonials.map((testimonial) => (
                 <article
                   key={testimonial.name}
-                  className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
+                  className="min-w-[90%] sm:min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                 >
                   <p className="text-sm leading-7 text-black/68">
                     “{testimonial.quote}”
