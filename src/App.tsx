@@ -17,7 +17,7 @@ import {
   Wrench,
   X,
 } from "lucide-react";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useMemo, useState } from "react";
 
 import logoMark from "./assets/logo-mark.png";
 import logoWordmark from "./assets/logo-wordmark.png";
@@ -55,7 +55,7 @@ const services = [
     title: "Dépannage informatique",
     text: "Ordinateur lent, blocage logiciel, installation, nettoyage ou optimisation : vous retrouvez un appareil plus stable, plus fluide et plus simple à utiliser.",
     bullets: ["Pour particuliers et pros", "Prix clairs", "Réponse rapide"],
-    cta: "Demander un devis",
+    cta: "Demander un devis sur WhatsApp",
     href: "#offres",
   },
   {
@@ -100,22 +100,34 @@ const steps = [
 
 const offers = [
   {
-    title: "Entretien & optimisation",
-    price: "À partir de 59€",
-    text: "Pour retrouver un ordinateur plus fluide, mieux entretenu et plus agréable à utiliser.",
-    items: ["Nettoyage interne", "Mises à jour", "Optimisation", "Contrôle matériel"],
+    title: "Entretien Essentiel",
+    price: "59€",
+    text: "Pour garder un ordinateur plus propre, plus stable et plus agréable à utiliser.",
+    items: ["Nettoyage interne", "Contrôle matériel", "Mises à jour", "Optimisation légère"],
   },
   {
-    title: "Réparation / dépannage",
-    price: "À partir de 49€",
-    text: "Pour remplacer une pièce, résoudre un blocage ou remettre un appareil en état de fonctionnement.",
-    items: ["Diagnostic", "Remplacement de pièces", "Dépannage", "Conseil clair"],
+    title: "Réparation / Optimisation",
+    price: "49€",
+    text: "Pour remplacer une pièce défectueuse ou redonner de la fluidité à votre machine.",
+    items: ["Diagnostic", "Remplacement de pièces", "Upgrade SSD / RAM", "Conseils clairs"],
   },
   {
-    title: "Accompagnement digital",
-    price: "À partir de 49€",
-    text: "Pour être guidé simplement dans l’utilisation de vos appareils et outils numériques.",
+    title: "Accompagnement Digital",
+    price: "49€",
+    text: "Pour être aidé simplement dans vos démarches et votre usage du numérique.",
     items: ["Aide au quotidien", "Accompagnement humain", "Support à distance", "Conseils pratiques"],
+  },
+  {
+    title: "PC sur mesure",
+    price: "150€",
+    text: "Pour obtenir un ordinateur réellement adapté à votre usage, à vos besoins et à votre budget.",
+    items: ["Conseil composants", "Montage complet", "Installation Windows", "Tests et optimisation"],
+  },
+  {
+    title: "Nettoyage Premium",
+    price: "89€",
+    text: "Pour retrouver un ordinateur mieux refroidi, plus silencieux et plus performant.",
+    items: ["Nettoyage complet", "Pâte thermique", "Vérification refroidissement", "Test de stabilité"],
   },
 ];
 
@@ -310,6 +322,23 @@ function SectionTitle({
   );
 }
 
+
+function SwipeRow({
+  children,
+  desktopClassName,
+}: {
+  children: ReactNode;
+  desktopClassName: string;
+}) {
+  return (
+    <div className="hide-scrollbar premium-swipe -mr-5 overflow-x-auto pb-4 pr-2 md:mr-0 md:overflow-visible md:pr-0">
+      <div className={`flex snap-x snap-mandatory gap-5 pr-8 md:pr-0 ${desktopClassName}`}>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 function RepairCarousel() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -418,6 +447,7 @@ function RepairCarousel() {
 export default function App() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [openOfferIndex, setOpenOfferIndex] = useState<number | null>(0);
   const [formData, setFormData] = useState({
     name: "",
     contact: "",
@@ -429,12 +459,16 @@ export default function App() {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const subject = encodeURIComponent(`Demande ZANK Solutions — ${formData.need}`);
-    const body = encodeURIComponent(
-      `Nom : ${formData.name}\nContact : ${formData.contact}\nBesoin : ${formData.need}\n\nMessage :\n${formData.message}`,
+    const message = encodeURIComponent(
+      `Bonjour, voici ma demande :
+
+Nom : ${formData.name}
+Contact : ${formData.contact}
+Type de besoin : ${formData.need}
+Message : ${formData.message}`,
     );
 
-    window.location.href = `mailto:info@zanksolutions.be?subject=${subject}&body=${body}`;
+    window.open(`https://wa.me/32499469864?text=${message}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -457,8 +491,8 @@ export default function App() {
             <a href="https://wa.me/32499469864" className="rounded-full border border-black/10 px-4 py-2 text-sm font-medium text-black transition hover:bg-black/5">
               WhatsApp
             </a>
-            <a href="#contact" className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:scale-[1.02]">
-              Demander un devis
+            <a href="https://wa.me/32499469864" className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:scale-[1.02]">
+              Demander un devis sur WhatsApp
             </a>
           </div>
 
@@ -504,10 +538,10 @@ export default function App() {
                 Réponse rapide · Prise de contact simple · Garantie
               </div>
               <h1 className="mt-7 max-w-4xl text-4xl font-semibold tracking-tight text-black sm:text-6xl lg:text-7xl">
-                Réparation smartphone, dépannage informatique et assistance technique près de chez vous
+                Un problème informatique ou un smartphone à réparer ? Vous êtes au bon endroit.
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-black/65 sm:text-xl">
-                ZANK Solutions accompagne les particuliers, indépendants et petites entreprises avec une approche claire, un contact simple, des prix lisibles et une solution adaptée à votre besoin.
+                ZANK Solutions accompagne les particuliers, indépendants et petites entreprises avec des solutions simples, une réponse rapide, des prix clairs et un contact direct par WhatsApp, téléphone ou email.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -519,33 +553,24 @@ export default function App() {
                 </a>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-3 text-sm text-black/60">
-                {[
-                  "Particuliers, indépendants & petites entreprises",
-                  "Service local",
-                  "Prix clairs",
-                  "Travail soigné",
-                ].map((item) => (
-                  <span key={item} className="rounded-full border border-black/10 bg-white px-4 py-2 shadow-sm">
-                    {item}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-8 text-sm text-black/60 sm:text-base">
+                Une réponse rapide, des prix clairs, un contact simple
+              </p>
 
               <div className="mt-12">
                 <p className="mb-5 text-sm font-semibold uppercase tracking-[0.18em] text-black/42">Nous avons une solution</p>
-                <div className="grid gap-4 sm:grid-cols-3">
+                <SwipeRow desktopClassName="md:grid md:grid-cols-3 md:gap-4">
                   {[
                     ["Simple", "Vous expliquez votre problème et vous obtenez une réponse claire, sans jargon inutile."],
-                    ["Fiable", "Vous bénéficiez d’un accompagnement sérieux, d’un travail soigné et d’une solution adaptée."],
-                    ["Rapide", "Vous pouvez demander un devis, un diagnostic ou une aide sans perdre de temps."],
+                    ["Fiable", "Vous bénéficiez d’un accompagnement sérieux, d’une solution adaptée et d’une prise en charge rassurante."],
+                    ["Rapide", "Vous pouvez demander un devis, un diagnostic ou une aide rapidement, avec une prise de contact simple."],
                   ].map(([title, text]) => (
-                    <div key={title} className="rounded-[1.75rem] border border-black/8 bg-white p-5 shadow-sm">
+                    <div key={title} className="min-w-[82%] snap-start rounded-[1.75rem] border border-black/8 bg-white p-5 shadow-sm md:min-w-0">
                       <p className="text-3xl font-semibold tracking-tight">{title}</p>
                       <p className="mt-2 text-sm text-black/55">{text}</p>
                     </div>
                   ))}
-                </div>
+                </SwipeRow>
               </div>
             </motion.div>
 
@@ -555,7 +580,7 @@ export default function App() {
                 <div className="rounded-[1.9rem] bg-[#f5f5f7] p-6 lg:p-8">
                   <img src={logoWordmark} alt="ZANK Solutions" className="mx-auto h-32 w-auto object-contain sm:h-44 lg:h-52" />
 
-                  <div className="mt-7 grid gap-4">
+                  <div className="mt-7"><SwipeRow desktopClassName="md:grid md:grid-cols-1 md:gap-4">
                     {services.map((service) => {
                       const Icon = service.icon;
                       const external = service.href.startsWith("http");
@@ -565,7 +590,7 @@ export default function App() {
                           href={service.href}
                           target={external ? "_blank" : undefined}
                           rel={external ? "noreferrer" : undefined}
-                          className="block rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                          className="block min-w-[84%] snap-start rounded-2xl bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md md:min-w-0"
                         >
                           <div className="flex items-center gap-3">
                             <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-black text-white">
@@ -577,7 +602,7 @@ export default function App() {
                         </a>
                       );
                     })}
-                  </div>
+                  </SwipeRow></div>
                 </div>
               </div>
             </motion.div>
@@ -588,13 +613,13 @@ export default function App() {
           <motion.div {...fadeUp}>
             <SectionTitle
               eyebrow="Services"
-              title="Une offre plus claire pour vous orienter rapidement vers la bonne solution."
-              text="Réparation smartphone, dépannage informatique et assistance : chaque service est présenté avec un bénéfice client et un CTA précis."
+              title="Des solutions claires pour vos besoins du quotidien."
+              text="Que vous ayez besoin d’une réparation, d’un dépannage ou d’un accompagnement, l’objectif est toujours le même : vous faire gagner du temps avec une solution simple, claire et adaptée."
               align="center"
             />
           </motion.div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-14"><SwipeRow desktopClassName="md:grid md:grid-cols-2 md:gap-6 xl:grid-cols-3">
             {services.map((service, index) => {
               const Icon = service.icon;
               const external = service.href.startsWith("http");
@@ -604,7 +629,7 @@ export default function App() {
                   key={service.title}
                   {...fadeUp}
                   transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-                  className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)]"
+                  className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                 >
                   <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-lg">
                     <Icon size={22} />
@@ -631,7 +656,7 @@ export default function App() {
                 </motion.article>
               );
             })}
-          </div>
+          </SwipeRow></div>
         </section>
 
         <section className="bg-white">
@@ -639,13 +664,13 @@ export default function App() {
             <motion.div {...fadeUp}>
               <SectionTitle
                 eyebrow="Pourquoi choisir ZANK Solutions"
-                title="Un site plus rassurant, une offre plus claire, un contact plus direct."
-                text="L’objectif est simple : inspirer confiance et rendre la prise de contact évidente à chaque étape."
+                title="Pourquoi faire confiance à ZANK Solutions ?"
+                text="Quand vous cherchez de l’aide, vous voulez surtout une solution sérieuse, claire et rapide. C’est exactement l’approche proposée."
                 align="center"
               />
             </motion.div>
 
-            <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-14"><SwipeRow desktopClassName="md:grid md:grid-cols-2 md:gap-6 xl:grid-cols-4">
               {trustPoints.map((point, index) => {
                 const Icon = point.icon;
                 return (
@@ -653,7 +678,7 @@ export default function App() {
                     key={point.title}
                     {...fadeUp}
                     transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-                    className="rounded-[2rem] border border-black/8 bg-[#f5f5f7] p-7"
+                    className="min-w-[84%] snap-start rounded-[2rem] border border-black/8 bg-[#f5f5f7] p-7 md:min-w-0"
                   >
                     <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-black text-white">
                       <Icon size={20} />
@@ -663,7 +688,7 @@ export default function App() {
                   </motion.article>
                 );
               })}
-            </div>
+            </SwipeRow></div>
           </div>
         </section>
 
@@ -671,19 +696,19 @@ export default function App() {
           <motion.div {...fadeUp}>
             <SectionTitle
               eyebrow="Comment ça marche"
-              title="Un parcours simple pour vous faire gagner du temps."
-              text="Vous expliquez votre besoin, vous recevez une réponse claire, puis nous vous aidons avec la solution la plus adaptée."
+              title="Une prise en charge simple, du premier contact jusqu’à la solution"
+              text="Pas besoin de parcours compliqué. En quelques étapes, vous savez comment avancer."
               align="center"
             />
           </motion.div>
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-4">
+          <div className="mt-14"><SwipeRow desktopClassName="md:grid md:grid-cols-2 md:gap-6 xl:grid-cols-4">
             {steps.map((step, index) => (
               <motion.article
                 key={step}
                 {...fadeUp}
                 transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-                className="rounded-[2rem] border border-black/10 bg-white p-7 shadow-[0_18px_60px_rgba(0,0,0,0.05)]"
+                className="min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-white p-7 shadow-[0_18px_60px_rgba(0,0,0,0.05)] md:min-w-0"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-sm font-semibold text-white">
                   {index + 1}
@@ -691,7 +716,7 @@ export default function App() {
                 <p className="mt-5 text-base leading-7 text-black/70">{step}</p>
               </motion.article>
             ))}
-          </div>
+          </SwipeRow></div>
 
           <motion.div {...fadeUp} className="mt-12 rounded-[2rem] bg-black px-8 py-7 text-white">
             <div className="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-center">
@@ -713,43 +738,61 @@ export default function App() {
             <motion.div {...fadeUp}>
               <SectionTitle
                 eyebrow="Offres & tarifs"
-                title="Des offres claires pour répondre à vos besoins sans surcharger le parcours."
-                text="Entretien, optimisation, dépannage ou accompagnement : vous choisissez une formule adaptée avec une présentation plus professionnelle de ce qui est inclus."
+                title="Des offres claires pour répondre à vos besoins"
+                text="Que vous vouliez entretenir votre ordinateur, l’optimiser, vous faire accompagner ou repartir sur une configuration adaptée, vous trouvez une formule claire et facile à comprendre."
                 align="center"
               />
             </motion.div>
 
-            <div className="mt-14 grid gap-6 xl:grid-cols-3">
-              {offers.map((offer, index) => (
-                <motion.article
-                  key={offer.title}
-                  {...fadeUp}
-                  transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-                  className="rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.04)]"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/40">Offre</p>
-                      <h3 className="mt-2 text-3xl font-semibold tracking-tight text-black">{offer.title}</h3>
-                    </div>
-                    <div className="rounded-full bg-black px-5 py-3 text-sm font-semibold text-white">{offer.price}</div>
-                  </div>
-                  <p className="mt-5 text-sm leading-7 text-black/63">{offer.text}</p>
-                  <div className="mt-6 space-y-3">
-                    {offer.items.map((item) => (
-                      <div key={item} className="flex items-start gap-3 text-sm text-black/72">
-                        <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-black" />
-                        <span>{item}</span>
+            <div className="mt-14"><SwipeRow desktopClassName="md:grid md:grid-cols-2 md:gap-6 xl:grid-cols-3">
+              {offers.map((offer, index) => {
+                const isOpen = openOfferIndex === index;
+                return (
+                  <motion.article
+                    key={offer.title}
+                    {...fadeUp}
+                    transition={{ ...fadeUp.transition, delay: index * 0.05 }}
+                    className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8 shadow-[0_18px_60px_rgba(0,0,0,0.04)] md:min-w-0"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenOfferIndex((current) => (current === index ? null : index))}
+                      className="w-full text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-black/40">Offre</p>
+                          <h3 className="mt-2 text-3xl font-semibold tracking-tight text-black">{offer.title}</h3>
+                        </div>
+                        <div className="rounded-full bg-black px-5 py-3 text-sm font-semibold text-white">{offer.price}</div>
                       </div>
-                    ))}
-                  </div>
-                  <a href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-black/5">
-                    Demander un devis rapide
-                    <ArrowRight size={16} />
-                  </a>
-                </motion.article>
-              ))}
-            </div>
+                      <p className="mt-5 text-sm leading-7 text-black/63">{offer.text}</p>
+                      <div className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-black/70">
+                        <span>{isOpen ? "Masquer les détails" : "Voir les détails"}</span>
+                        <ChevronDown size={16} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                      </div>
+                    </button>
+                    {isOpen ? (
+                      <>
+                        <div className="mt-6 space-y-3">
+                          {offer.items.map((item) => (
+                            <div key={item} className="flex items-start gap-3 text-sm text-black/72">
+                              <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-black" />
+                              <span>{item}</span>
+                            </div>
+                          ))}
+                        </div>
+                        <a href="https://wa.me/32499469864" className="mt-8 inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-5 py-3 text-sm font-medium text-black transition hover:bg-black/5">
+                          Demander un devis sur WhatsApp
+                          <ArrowRight size={16} />
+                        </a>
+                      </>
+                    ) : null}
+                  </motion.article>
+                );
+              })}
+            </SwipeRow></div>
           </div>
         </section>
 
@@ -757,8 +800,8 @@ export default function App() {
           <motion.div {...fadeUp}>
             <SectionTitle
               eyebrow="Réparation smartphone"
-              title="Réparation smartphone avec tarifs visibles et prise en charge claire."
-              text="Vous pouvez visualiser des exemples de réparations, les marques prises en charge et des premiers tarifs indicatifs avant de demander votre diagnostic."
+              title="Réparer votre smartphone avec plus de visibilité et moins d’incertitude"
+              text="Avant même de demander votre prise en charge, vous pouvez consulter des exemples de réparations, voir les marques prises en charge et obtenir une première idée des tarifs."
               align="center"
             />
           </motion.div>
@@ -773,7 +816,7 @@ export default function App() {
 
           <RepairCarousel />
 
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          <div className="mt-14"><SwipeRow desktopClassName="md:grid md:grid-cols-3 md:gap-6">
             {repairCards.map((item, index) => {
               const Icon = item.icon;
 
@@ -782,7 +825,7 @@ export default function App() {
                   key={item.title}
                   {...fadeUp}
                   transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-                  className="rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)]"
+                  className="min-w-[82%] snap-start rounded-[2rem] border border-black/10 bg-white p-8 shadow-[0_18px_60px_rgba(0,0,0,0.06)] md:min-w-0"
                 >
                   <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white">
                     <Icon size={22} />
@@ -792,7 +835,7 @@ export default function App() {
                 </motion.article>
               );
             })}
-          </div>
+          </SwipeRow></div>
 
           <motion.div
             {...fadeUp}
@@ -852,13 +895,13 @@ export default function App() {
               />
             </motion.div>
 
-            <div className="mt-14 grid gap-6 lg:grid-cols-3">
+            <div className="mt-14"><SwipeRow desktopClassName="md:grid md:grid-cols-3 md:gap-6">
               {testimonials.map((testimonial, index) => (
                 <motion.article
                   key={testimonial.name}
                   {...fadeUp}
                   transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-                  className="rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8"
+                  className="min-w-[84%] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8 md:min-w-0"
                 >
                   <div className="mb-5 flex items-center gap-1 text-black">
                     {Array.from({ length: 5 }).map((_, starIndex) => (
@@ -869,7 +912,7 @@ export default function App() {
                   <p className="mt-6 text-sm font-semibold uppercase tracking-[0.18em] text-black/40">{testimonial.name}</p>
                 </motion.article>
               ))}
-            </div>
+            </SwipeRow></div>
           </div>
         </section>
 
@@ -878,8 +921,8 @@ export default function App() {
             <motion.div {...fadeUp}>
               <SectionTitle
                 eyebrow="Questions fréquentes"
-                title="Les réponses utiles avant de prendre contact."
-                text="Une FAQ pensée pour rassurer, clarifier l’offre et lever les objections les plus courantes."
+                title="Les réponses aux questions que vous vous posez le plus souvent"
+                text="Avant de prendre contact, vous pouvez déjà retrouver ici les informations les plus utiles."
                 align="center"
               />
             </motion.div>
@@ -927,29 +970,29 @@ export default function App() {
                   Obtenez une réponse rapidement.
                 </h2>
                 <p className="mt-5 text-lg leading-8 text-white/70">
-                  Expliquez votre besoin par WhatsApp, téléphone ou email. Que vous soyez particulier, indépendant ou petite entreprise, vous obtenez une prise de contact simple et une orientation claire.
+                  Expliquez votre besoin en quelques secondes. Que vous soyez particulier, indépendant ou petite entreprise, vous pouvez préparer votre message et l’envoyer directement sur WhatsApp.
                 </p>
 
-                <div className="mt-10 grid gap-4">
-                  <a href="https://wa.me/32499469864" className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+                <div className="mt-10"><SwipeRow desktopClassName="md:grid md:grid-cols-3 md:gap-4">
+                  <a href="https://wa.me/32499469864" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
                     <p className="text-sm text-white/45">WhatsApp</p>
                     <p className="mt-2 text-xl font-medium text-white">Message rapide</p>
                   </a>
-                  <a href="tel:+32499469864" className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+                  <a href="tel:+32499469864" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
                     <p className="text-sm text-white/45">Téléphone</p>
                     <p className="mt-2 text-xl font-medium text-white">+32 499 469 864</p>
                   </a>
-                  <a href="mailto:info@zanksolutions.be" className="rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10">
+                  <a href="mailto:info@zanksolutions.be" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
                     <p className="text-sm text-white/45">Email</p>
                     <p className="mt-2 text-xl font-medium text-white">info@zanksolutions.be</p>
                   </a>
-                </div>
+                </SwipeRow></div>
               </motion.div>
 
               <motion.div {...fadeUp} className="rounded-[2rem] border border-white/10 bg-white/5 p-8">
-                <h3 className="text-2xl font-semibold tracking-tight text-white">Obtenir un devis rapidement</h3>
+                <h3 className="text-2xl font-semibold tracking-tight text-white">Envoyer sur WhatsApp</h3>
                 <p className="mt-3 text-sm leading-7 text-white/70">
-                  Ce formulaire prépare votre demande. À l’envoi, votre message s’ouvre dans votre client email avec les bonnes informations.
+                  Remplissez le formulaire ci-dessous pour préparer votre message et l’envoyer directement sur WhatsApp.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-8 space-y-4">
@@ -965,7 +1008,7 @@ export default function App() {
                     <input
                       type="text"
                       required
-                      placeholder="Email ou téléphone"
+                      placeholder="Téléphone ou email"
                       value={formData.contact}
                       onChange={(event) => setFormData((current) => ({ ...current, contact: event.target.value }))}
                       className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-white/30"
@@ -978,22 +1021,26 @@ export default function App() {
                   >
                     <option className="text-black">Réparation smartphone</option>
                     <option className="text-black">Dépannage informatique</option>
-                    <option className="text-black">Assistance / accompagnement</option>
+                    <option className="text-black">Assistance à distance</option>
+                    <option className="text-black">Optimisation / entretien PC</option>
+                    <option className="text-black">PC sur mesure</option>
+                    <option className="text-black">Nettoyage Premium</option>
                     <option className="text-black">Autre demande</option>
                   </select>
                   <textarea
                     required
                     rows={5}
-                    placeholder="Expliquez votre besoin"
+                    placeholder="Expliquez brièvement votre besoin, votre problème ou ce que vous souhaitez faire."
                     value={formData.message}
                     onChange={(event) => setFormData((current) => ({ ...current, message: event.target.value }))}
                     className="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 outline-none transition focus:border-white/30"
                   />
                   <button type="submit" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:scale-[1.02]">
-                    Obtenir un devis rapidement
+                    Envoyer sur WhatsApp
                     <ArrowRight size={16} />
                   </button>
                 </form>
+                <p className="mt-4 text-sm text-white/55">Votre message s’ouvrira dans WhatsApp avant envoi.</p>
               </motion.div>
             </div>
           </div>
