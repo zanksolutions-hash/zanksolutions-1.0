@@ -976,15 +976,15 @@ Message : ${formData.message}`,
                 <div className="mt-10"><SwipeRow desktopClassName="md:grid md:grid-cols-3 md:gap-4">
                   <a href="https://wa.me/32499469864" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
                     <p className="text-sm text-white/45">WhatsApp</p>
-                    <p className="mt-2 text-xl font-medium text-white">Message rapide</p>
+                    <p className="mt-2 text-xl font-medium text-white">Nous contacter</p>
                   </a>
                   <a href="tel:+32499469864" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
                     <p className="text-sm text-white/45">Téléphone</p>
-                    <p className="mt-2 text-xl font-medium text-white">+32 499 469 864</p>
+                    <p className="mt-2 text-[1.9rem] font-medium leading-tight whitespace-nowrap text-white">+32 499 469 864</p>
                   </a>
                   <a href="mailto:info@zanksolutions.be" className="min-w-[84%] snap-start rounded-[1.8rem] border border-white/10 bg-white/5 p-6 transition hover:bg-white/10 md:min-w-0">
                     <p className="text-sm text-white/45">Email</p>
-                    <p className="mt-2 text-xl font-medium text-white">info@zanksolutions.be</p>
+                    <p className="mt-2 text-xl font-medium leading-tight break-all text-white">info@zanksolutions.be</p>
                   </a>
                 </SwipeRow></div>
               </motion.div>
