@@ -232,7 +232,7 @@ const forfaits: ForfaitItem[] = [
   },
   {
     title: "Site web vitrine",
-    price: "350€",
+    price: "450€",
     hook: "Pour lancer un site vitrine clair, professionnel et prêt à présenter votre activité.",
     details: [
       "Maquette simple et structurée",
