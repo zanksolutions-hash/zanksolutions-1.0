@@ -366,7 +366,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "Pouvez-vous créer un site web vitrine ?",
-    a: "Oui. Une offre de site vitrine à partir de 350€ peut être proposée pour présenter clairement votre activité en ligne.",
+    a: "Oui. Une offre de site vitrine à partir de 450€ peut être proposée pour présenter clairement votre activité en ligne.",
   },
 ];
 
@@ -771,7 +771,7 @@ export default function App() {
             <SectionTitle
               eyebrow="Création de site vitrine"
               title="Un site vitrine clair, professionnel et prêt à présenter votre activité"
-              description="À partir de 350€, vous pouvez lancer une présence en ligne simple, moderne et rassurante pour mieux présenter vos services et faciliter la prise de contact."
+              description="À partir de 450€, vous pouvez lancer une présence en ligne simple, moderne et rassurante pour mieux présenter vos services et faciliter la prise de contact."
               titleClassName="text-[2rem] leading-[1.04] sm:text-4xl lg:text-5xl"
               descriptionClassName="max-w-[24ch] sm:max-w-2xl"
             />
@@ -784,7 +784,7 @@ export default function App() {
                       <Globe size={22} />
                     </div>
                     <div className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
-                      À partir de 350€
+                      À partir de 450€
                     </div>
                   </div>
 
