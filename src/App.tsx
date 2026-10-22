@@ -109,11 +109,11 @@ const services: ServiceItem[] = [
   },
   {
     icon: Globe,
-    title: "Création de site vitrine",
-    text: "Vous avez besoin d’une présence en ligne claire, professionnelle et rassurante ? Vous pouvez lancer un site vitrine simple, moderne et prêt à présenter votre activité.",
+    title: "Création de site web",
+    text: "Votre site professionnel en ligne en 7 jours, dès 25 € par mois : création, hébergement, nom de domaine et modifications inclus.",
     benefit:
-      "Vous gagnez en crédibilité avec une base propre, lisible et pensée pour vos futurs clients.",
-    cta: "Demander un devis",
+      "Vous voyez une maquette de votre site avant de payer quoi que ce soit.",
+    cta: "Découvrir les formules",
     href: "#site-vitrine",
   },
 ];
@@ -231,20 +231,20 @@ const forfaits: ForfaitItem[] = [
     ],
   },
   {
-    title: "Site web vitrine",
-    price: "450€",
-    hook: "Pour lancer un site vitrine clair, professionnel et prêt à présenter votre activité.",
+    title: "Site web tout compris",
+    price: "25€/mois",
+    hook: "Votre site professionnel en ligne en 7 jours, entretenu chaque mois.",
     details: [
-      "Maquette simple et structurée",
-      "Site responsive mobile et desktop",
-      "Présentation claire de vos services",
-      "Section contact intégrée",
-      "Base propre pour votre visibilité en ligne",
+      "Maquette offerte avant de signer",
+      "Création, hébergement et sécurité inclus",
+      "Nom de domaine enregistré à votre nom",
+      "Site adapté mobile et ordinateur",
+      "Modifications incluses chaque mois",
     ],
     options: [
-      "Ajout de pages supplémentaires",
-      "Aide au contenu",
-      "Optimisations complémentaires",
+      "Formule Pro (45€/mois) : référencement local et prise de rendez-vous",
+      "Formule Premium (79€/mois) : blog, multilingue, modifications illimitées",
+      "Mise en service : 149€, offerte avec un engagement de 24 mois",
     ],
   },
 ];
@@ -365,8 +365,8 @@ const faqs: FaqItem[] = [
     a: "Oui, les interventions proposées sont réalisées avec garantie.",
   },
   {
-    q: "Pouvez-vous créer un site web vitrine ?",
-    a: "Oui. Une offre de site vitrine à partir de 450€ peut être proposée pour présenter clairement votre activité en ligne.",
+    q: "Pouvez-vous créer un site web pour mon activité ?",
+    a: "Oui. Nous créons votre site professionnel en 7 jours, dès 25 € par mois tout compris (création, hébergement, nom de domaine à votre nom et modifications). Vous recevez une maquette gratuite avant de décider. Toutes les formules et des exemples sont sur webstudio.zanksolutions.be.",
   },
 ];
 
@@ -769,9 +769,9 @@ export default function App() {
         <section id="site-vitrine" className="bg-white">
           <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
             <SectionTitle
-              eyebrow="Création de site vitrine"
-              title="Un site vitrine clair, professionnel et prêt à présenter votre activité"
-              description="À partir de 450€, vous pouvez lancer une présence en ligne simple, moderne et rassurante pour mieux présenter vos services et faciliter la prise de contact."
+              eyebrow="Zank Web Studio"
+              title="Votre site professionnel en 7 jours, dès 25 € par mois"
+              description="Création, hébergement, nom de domaine à votre nom et modifications : tout est compris. Vous recevez une maquette gratuite avant de décider."
               titleClassName="text-[2rem] leading-[1.04] sm:text-4xl lg:text-5xl"
               descriptionClassName="max-w-[24ch] sm:max-w-2xl"
             />
@@ -784,27 +784,26 @@ export default function App() {
                       <Globe size={22} />
                     </div>
                     <div className="rounded-full bg-white px-4 py-2 text-sm font-semibold text-black">
-                      À partir de 450€
+                      Dès 25€ / mois
                     </div>
                   </div>
 
                   <h3 className="mt-8 text-[2rem] font-semibold leading-[1.02] tracking-tight sm:text-[2.4rem]">
-                    Création de site web vitrine
+                    Site web tout compris
                   </h3>
 
                   <p className="mt-5 max-w-[28ch] text-base leading-8 text-white/75">
-                    Vous avez besoin d’un site propre, lisible et rassurant pour
-                    présenter votre activité ? Cette formule vous permet de poser
-                    une base sérieuse, professionnelle et claire pour votre
-                    visibilité en ligne.
+                    Pas de gros investissement au départ : vous payez un petit
+                    abonnement mensuel et nous nous occupons de tout, de la
+                    création aux mises à jour.
                   </p>
 
                   <div className="mt-8 grid gap-3 sm:grid-cols-2">
                     {[
-                      "Design simple et professionnel",
-                      "Responsive mobile et desktop",
-                      "Présentation claire de vos services",
-                      "Section contact intégrée",
+                      "Maquette offerte avant de signer",
+                      "Nom de domaine à votre nom",
+                      "Hébergement et sécurité inclus",
+                      "Modifications incluses chaque mois",
                     ].map((item) => (
                       <div key={item} className="flex items-start gap-3 text-sm text-white/78">
                         <CheckCircle2 size={18} className="mt-1 shrink-0 text-white" />
@@ -813,12 +812,24 @@ export default function App() {
                     ))}
                   </div>
 
-                  <a
-                    href="#contact"
-                    className="mt-8 inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
-                  >
-                    Demander un devis pour un site vitrine
-                  </a>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <a
+                      href="https://webstudio.zanksolutions.be"
+                      target="_blank"
+                      rel="noopener"
+                      className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-medium text-black transition hover:scale-[1.02]"
+                    >
+                      Voir les formules et des exemples
+                    </a>
+                    <a
+                      href="https://webstudio.zanksolutions.be/#contact"
+                      target="_blank"
+                      rel="noopener"
+                      className="inline-flex rounded-full border border-white/30 px-5 py-3 text-sm font-medium text-white transition hover:border-white/60"
+                    >
+                      Recevoir ma maquette gratuite
+                    </a>
+                  </div>
                 </article>
 
                 <article className="min-w-[calc(100vw-4rem)] max-w-[calc(100vw-4rem)] snap-start rounded-[2rem] border border-black/10 bg-[#f5f5f7] p-8 sm:min-w-[84%] sm:max-w-none md:min-w-0">
@@ -841,9 +852,9 @@ export default function App() {
                   </div>
 
                   <p className="mt-8 text-sm leading-7 text-black/62">
-                    L’objectif n’est pas de faire compliqué, mais de créer un
-                    site clair, moderne et utile pour présenter votre activité
-                    et faciliter vos prises de contact.
+                    Formules Pro (45 €/mois) et Premium (79 €/mois) pour aller
+                    plus loin : référencement local, prise de rendez-vous, blog.
+                    Engagement de 12 mois, puis sans engagement.
                   </p>
                 </article>
               </MobileSwipeRow>
@@ -1398,7 +1409,7 @@ export default function App() {
                         <option>Optimisation / entretien PC</option>
                         <option>PC sur mesure</option>
                         <option>Nettoyage Premium</option>
-                        <option>Création site web vitrine</option>
+                        <option>Création de site web</option>
                         <option>Autre demande</option>
                       </select>
                     </div>
